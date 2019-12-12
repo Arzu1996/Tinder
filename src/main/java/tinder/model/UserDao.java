@@ -13,10 +13,6 @@ import java.util.List;
 public class UserDao implements Dao<UserBean> {
 
     private Connection connection= DbConn.get();
-
-    public UserDao(){
-    }
-
     @Override
     public void store(UserBean entity) {
 
@@ -32,18 +28,24 @@ public class UserDao implements Dao<UserBean> {
 
     }
 
-    @Override
-    public List<UserBean> all() throws SQLException {
-        List<UserBean> user=new ArrayList<>();
-        String sql = "select * from users";
-        PreparedStatement ps;
-        ps = connection.prepareStatement(sql);
-        ResultSet rs = ps.executeQuery();
-        while (rs.next()){
-            user.add(new UserBean(rs.getInt("id"),
-                    rs.getString("email"),
-                    rs.getString("password")));
+    public boolean existByEmailAndPass(String email, String pass) {
+        String sql = "SELECT * FROM users WHERE email='"+email+"'";
+        boolean answ = false;
+
+        try(PreparedStatement statement = DbConn.get().prepareStatement(sql);
+            ResultSet rSet = statement.executeQuery()){
+
+            while(rSet.next()) {
+                if(rSet.getString("email").equals(email)
+                        && rSet.getString("password").equals(pass)){
+                    answ = true;
+                }
+            }
+
+        } catch (SQLException e){
+            e.printStackTrace();
         }
-        return user;
+
+        return answ;
     }
 }

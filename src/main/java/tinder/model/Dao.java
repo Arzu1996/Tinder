@@ -11,5 +11,5 @@ public interface Dao<T> {
     void store(T entity);
     void update(T entity);
     void delete(int id);
-    List<T> all() throws SQLException;
+    boolean existByEmailAndPass(String email, String pass);
 }

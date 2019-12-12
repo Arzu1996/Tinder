@@ -1,6 +1,8 @@
 package tinder;
 
 
+import tinder.model.UserDao;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,13 +13,13 @@ import java.sql.SQLException;
 public class LoginServlet extends HttpServlet {
 
   private final TemplateEngine te;
-  private final Auth auth;
+  private final UserDao userDao;
 
-  public LoginServlet(TemplateEngine te, Auth auth) {
+  public LoginServlet(TemplateEngine te,UserDao userDao) {
     this.te = te;
-    this.auth = auth;
-  }
 
+    this.userDao = userDao;
+  }
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -26,14 +28,10 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       String email=req.getParameter("inputEmail");
-       String password=req.getParameter("inputPassword");
-      try {
-        if (auth.check(email,password)){
-          resp.sendRedirect("/users/*");
-        }
-      } catch (SQLException e) {
-        e.printStackTrace();
+       String email=req.getParameter("email");
+       String password=req.getParameter("password");
+      if (userDao.existByEmailAndPass(email,password)){
+        resp.sendRedirect("/users/*");
       }
     }
 }
