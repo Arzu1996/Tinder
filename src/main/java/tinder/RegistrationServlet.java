@@ -9,14 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 
-public class LoginServlet extends HttpServlet {
+public class RegistrationServlet extends HttpServlet {
 
   private final TemplateEngine te;
   private final UserDao userDao;
 
-  public LoginServlet(TemplateEngine te,UserDao userDao) {
+  public RegistrationServlet(TemplateEngine te, UserDao userDao) {
 
     this.te = te;
 

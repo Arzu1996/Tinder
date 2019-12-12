@@ -4,9 +4,11 @@ public class UserBean {
     private int id;
     private String email;
     private String password;
-    public boolean valid;
 
     public UserBean(int id, String email, String password) {
+    }
+
+    public UserBean(String email, String password) {
     }
 
     public int getId() {
@@ -33,11 +35,12 @@ public class UserBean {
         this.password = password;
     }
 
-    public boolean isValid() {
-        return valid;
-    }
-
-    public void setValid(boolean newValid) {
-        valid = newValid;
+    @Override
+    public String toString() {
+        return "UserBean{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }
