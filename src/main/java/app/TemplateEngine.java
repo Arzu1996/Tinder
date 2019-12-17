@@ -1,4 +1,4 @@
-package tinder;
+package app;
 
 import freemarker.template.Configuration;
 import freemarker.template.TemplateException;

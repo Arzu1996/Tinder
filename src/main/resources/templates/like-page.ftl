@@ -12,7 +12,7 @@
     <!-- Bootstrap core CSS -->
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
+   l <!-- Custom styles for this template -->
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body style="background-color: #f5f5f5;">
@@ -22,8 +22,8 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-12 col-lg-12 col-md-12 text-center" >
-                    <img src="https://robohash.org/68.186.255.198.png" alt="" class="mx-auto rounded-circle img-fluid">
-                    <h3 class="mb-0 text-truncated">User name</h3>
+                    <img src="${image}" alt="" class="mx-auto rounded-circle img-fluid">
+                    <h3 class="mb-0 text-truncated">${firstName} ${lastName}</h3>
                     <br>
                 </div>
                 <div class="col-12 col-lg-6">
