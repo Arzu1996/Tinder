@@ -5,7 +5,6 @@ import app.TemplateEngine;
 import app.service.RegisterService;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,9 +35,6 @@ public class RegisterServlet extends HttpServlet {
         // =========================
         PrintWriter w = resp.getWriter();
         if (res) {
-            Cookie cookie = new Cookie("%B",
-                    daoUser.get(email).getUserId());
-            resp.addCookie(cookie);
             resp.sendRedirect("/login/*");
         } else {
             w.println("ERR");

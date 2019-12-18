@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body style="background-color: #f5f5f5;">
-
 <div class="col-4 offset-4" >
     <div class="card">
         <div class="card-body">
@@ -26,11 +25,16 @@
                     <h3 class="mb-0 text-truncated">${firstName} ${lastName}</h3>
                     <br>
                 </div>
+
                 <div class="col-12 col-lg-6">
-                    <button type="button" class="btn btn-outline-danger btn-block"><span class="fa fa-times"></span> Dislike</button>
+                    <form  method="post" action="/users">
+                    <button type="submit" class="btn btn-outline-danger btn-block" name="choice" value="dislike"><span class="fa fa-times"></span> Dislike</button>
+                    </form>
                 </div>
                 <div class="col-12 col-lg-6">
-                    <button class="btn btn-outline-success btn-block"><span class="fa fa-heart"></span> Like</button>
+                    <form method="post" action="/users">
+                    <button type="submit" class="btn btn-outline-success btn-block" name="choice" value="like"><span class="fa fa-heart"></span> Like</button>
+                    </form>
                 </div>
                 <!--/col-->
             </div>

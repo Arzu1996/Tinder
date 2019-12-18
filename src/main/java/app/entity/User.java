@@ -2,7 +2,7 @@ package app.entity;
 
 public class User {
     public boolean valid;
-    private String userId;
+    private int userId;
     private String email;
     private String password;
     private String firstName;
@@ -24,10 +24,19 @@ public class User {
         this.image = image;
     }
 
-    public User(String userId, String email, String password, String firstName, String lastName, int age, String image) {
+
+    public User(int userId, String email, String password, String firstName, String lastName, int age, String image) {
+        this.userId=userId;
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.image = image;
     }
 
-    public String getUserId() {
+
+    public int getUserId() {
         return userId;
     }
 
@@ -55,7 +64,7 @@ public class User {
         valid = newValid;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 

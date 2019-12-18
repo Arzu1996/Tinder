@@ -16,7 +16,6 @@ public class Application {
     public static void main(String[] args) throws Exception {
         TemplateEngine te = TemplateEngine.resources("/templates");
         ServletContextHandler handler = new ServletContextHandler();
-
         handler.addServlet((new ServletHolder(new StaticContentServlet("content"))), "/static/*");
         handler.addServlet((new ServletHolder(new UserServlet(te))), "/users/*");
         handler.addServlet((new ServletHolder(new LikedServlet(te))), "/liked/*");

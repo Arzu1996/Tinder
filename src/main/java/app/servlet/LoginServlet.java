@@ -3,13 +3,11 @@ package app.servlet;
 
 import app.DAO.DAOUser;
 import app.TemplateEngine;
+import app.entity.User;
 import app.service.LoginService;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -35,9 +33,10 @@ public class LoginServlet extends HttpServlet {
         // =========================
         PrintWriter w = resp.getWriter();
         if (res) {
-            Cookie cookie = new Cookie("%B",
-                    daoUser.get(email).getUserId());
-            resp.addCookie(cookie);
+            Cookie c = new Cookie("%like%", String.valueOf(daoUser.get(email).getUserId()));
+            c.setPath("/");
+            resp.addCookie(c);
+            System.out.println(c);
             resp.sendRedirect("/users");
         } else {
             w.println("ERR");

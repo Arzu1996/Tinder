@@ -12,19 +12,20 @@ import java.util.List;
 
 public class DAOUser implements DAO<User> {
 
-    List<User> users = new ArrayList<User>();
-    String userId;
-    String email;
-    String password;
-    String firstName;
-    String lastName;
-    String image;
-    int age;
+    private List<User> users = new ArrayList<User>();
+    private int userId;
+    private String email;
+    private String password;
+    private String firstName;
+    private String lastName;
+    private String image;
+    private int age;
     @Override
     public User get(int id) {
         try {
             Connection conn = DbConn.getConnection();
-            PreparedStatement st = conn.prepareStatement("SELECT email, password,firstname,lastname,age,image from users where userId=userId");
+            PreparedStatement st = conn.prepareStatement("SELECT email, password,firstname,lastname,age,image from users where userId=? ");
+            st.setInt(1,id);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 email = rs.getString(id);
@@ -47,14 +48,14 @@ public class DAOUser implements DAO<User> {
             PreparedStatement st = conn.prepareStatement("SELECT * from users");
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
+                userId=rs.getInt("userid");
                 email = rs.getString("email");
                 password = rs.getString("password");
                 firstName = rs.getString("firstName");
                 lastName = rs.getString("lastName");
                 age = rs.getInt("age");
                 image = rs.getString("image");
-
-                users.add(new User(email, password, firstName, lastName, age, image));
+                users.add(new User(userId, email, password, firstName, lastName, age, image));
             }
         } catch (SQLException se) {
             throw new IllegalArgumentException("DAO<User>, get method sql error", se);
@@ -85,10 +86,11 @@ public class DAOUser implements DAO<User> {
     }
 
     @Override
-    public User get(String email) {
+    public User get(String mail) {
         try {
             Connection conn = DbConn.getConnection();
-            PreparedStatement st = conn.prepareStatement("SELECT * from users where email=email");
+            PreparedStatement st = conn.prepareStatement("SELECT * from users where email=?");
+            st.setString(1,mail);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 email = rs.getString("email");
@@ -97,7 +99,7 @@ public class DAOUser implements DAO<User> {
                 lastName = rs.getString("lastName");
                 age = rs.getInt("age");
                 image = rs.getString("image");
-                userId=rs.getString("userId");
+                userId=rs.getInt("userId");
             }
         } catch (SQLException se) {
             throw new IllegalArgumentException("DAO<User>, get method sql error", se);
