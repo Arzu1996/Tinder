@@ -36,6 +36,9 @@
                     <button type="submit" class="btn btn-outline-success btn-block" name="choice" value="like"><span class="fa fa-heart"></span> Like</button>
                     </form>
                 </div>
+                <div class="col-12 col-lg-6">
+                    <a href="/liked">Liked users</a>
+                </div>
                 <!--/col-->
             </div>
             <!--/row-->

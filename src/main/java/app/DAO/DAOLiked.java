@@ -12,29 +12,41 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DAOLiked implements DAO<Liked> {
+public class DAOLiked  {
     List<Liked> liked = new ArrayList<>();
     int likedId;
     int fromWho;
     int toWhom;
-    @Override
-    public Liked get(int id) {
-        throw new IllegalArgumentException("DAO<Liked>:get hasn't implemented");
+
+    public List<Liked> get(int id) {
+        try {
+            Connection conn = DbConn.getConnection();
+            PreparedStatement st = conn.prepareStatement("SELECT likedid, towhom from liked where fromwho=? ");
+            st.setInt(1,id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                likedId = rs.getInt(id);
+                toWhom = rs.getInt(id);
+                liked.add(new Liked(likedId, toWhom));
+            }
+        } catch (SQLException se) {
+            throw new IllegalArgumentException("DAO<User>, get method sql error", se);
+        }
+        return liked;
 
     }
 
-    @Override
+
     public List<Liked> getAll() {
         try {
             Connection conn = DbConn.getConnection();
             PreparedStatement st = conn.prepareStatement("SELECT * from liked");
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                likedId = rs.getInt("liked");
                 fromWho = rs.getInt("fromwho");
                 toWhom = rs.getInt("towhom");
 
-                liked.add(new Liked(likedId, fromWho, toWhom));
+                liked.add(new Liked(fromWho, toWhom));
             }
         } catch (SQLException se) {
             throw new IllegalArgumentException("DAO<User>, get method sql error", se);
@@ -42,7 +54,7 @@ public class DAOLiked implements DAO<Liked> {
         return liked;
     }
 
-    @Override
+
     public void put(Liked liked) {
         try {
             Connection conn = DbConn.getConnection();
@@ -54,14 +66,11 @@ public class DAOLiked implements DAO<Liked> {
             throw new IllegalArgumentException(" DAO<Liked>, put method sql error", se);
         }    }
 
-    @Override
+
     public void delete(int id) {
         throw new IllegalArgumentException("DAO<Liked>:delete hasn't implemented");
 
     }
 
-    @Override
-    public Liked get(String email) {
-        return null;
-    }
+
 }
