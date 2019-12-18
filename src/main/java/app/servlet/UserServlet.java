@@ -37,7 +37,6 @@ public class UserServlet extends HttpServlet {
               }
           }
       }
-      String choice = req.getParameter("choice");
     Map<String, Object> data = new HashMap<>();
     data.put("firstName", daoUser.getAll().get(count).getFirstName());
     data.put("lastName", daoUser.getAll().get(count).getLastName());
