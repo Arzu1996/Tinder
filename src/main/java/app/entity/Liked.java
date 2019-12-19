@@ -22,6 +22,7 @@ public class Liked {
 
     }
 
+
     public int getLikedId() {
         return likedId;
     }

@@ -49,16 +49,13 @@ public class LikedServlet extends HttpServlet {
           e.printStackTrace();
       }
 
-      System.out.println(likedList);
       assert likedList != null;
       for (Liked liked : likedList) {
-          User user = daoUser.get(liked.getToWhom());
+          User user = daoUser.getById(liked.getToWhom());
           users.add(user);
       }
     Map<String, Object> data = new HashMap<>();
       data.put("users",users);
-
-
     te.render("people-list.ftl", data, resp);
   }
 }

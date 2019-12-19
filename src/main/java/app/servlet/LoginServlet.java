@@ -3,7 +3,6 @@ package app.servlet;
 
 import app.DAO.DAOUser;
 import app.TemplateEngine;
-import app.entity.User;
 import app.service.LoginService;
 
 import javax.servlet.ServletException;

@@ -2,8 +2,6 @@ package app.DAO;
 
 import app.database.DbConn;
 import app.entity.Liked;
-import app.entity.Message;
-import app.entity.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

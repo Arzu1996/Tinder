@@ -21,24 +21,25 @@ public class DAOUser implements DAO<User> {
     private String image;
     private int age;
     @Override
-    public User get(int id) {
+    public User getById(int id) {
         try {
             Connection conn = DbConn.getConnection();
-            PreparedStatement st = conn.prepareStatement("SELECT email, password,firstname,lastname,age,image from users where userId=? ");
+            PreparedStatement st = conn.prepareStatement("SELECT userid,email, password,firstname,lastname,age,image from users where userId=? ");
             st.setInt(1,id);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                email = rs.getString(id);
-                password = rs.getString(id);
-                firstName=rs.getString(id);
-                lastName=rs.getString(id);
-                age=rs.getInt(id);
-                image=rs.getString(id);
+                userId=rs.getInt("userid");
+                email = rs.getString("email");
+                password = rs.getString("password");
+                firstName=rs.getString("firstname");
+                lastName=rs.getString("lastname");
+                age=rs.getInt("age");
+                image=rs.getString("image");
             }
         } catch (SQLException se) {
             throw new IllegalArgumentException("DAO<User>, get method sql error", se);
         }
-        return new User(email, password, firstName, lastName, age, image);
+        return new User(userId,email, password, firstName, lastName, age, image);
     }
 
     @Override
