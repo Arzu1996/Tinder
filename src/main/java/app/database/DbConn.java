@@ -5,12 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DbConn{
-  private static final String DB_URL = "jdbc:postgresql://localhost:5432/postgres";
-//          "jdbc:mysql://localhost:3306/tindersc";
-    private static final String USERNAME = "postgres";
-//        "root";
-    private static final String USER_PASS = "123456";
-//        "";
+    private static final String DB_URL = "jdbc:mysql://remotemysql.com:3306/ZlZjKIQkMS";
+    private static final String USERNAME = "ZlZjKIQkMS";
+    private static final String USER_PASS = "KTl9ph7Hb3";
 
     private static Connection connection;
 
